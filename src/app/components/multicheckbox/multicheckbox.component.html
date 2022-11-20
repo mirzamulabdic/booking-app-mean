@@ -1,0 +1,19 @@
+<div>
+  <div (mouseleave)="showDropDown = false">
+    <button class="drop-toggle btn flat" (click)="showDropDown = !showDropDown">
+      <span class="" style="font-size: 15px">Select filters</span>
+      <i class="fa fa-angle-down"></i>
+    </button>
+    <div class="drop-show" *ngIf="showDropDown">
+      <label *ngFor="let a of list">
+        <input
+          class="chk"
+          type="checkbox"
+          [(ngModel)]="a.checked"
+          (change)="getSelectedValue(a.checked, a.name)"
+        />
+        <span class="txt">{{ a.name }}</span>
+      </label>
+    </div>
+  </div>
+</div>

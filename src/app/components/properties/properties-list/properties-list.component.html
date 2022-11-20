@@ -1,0 +1,221 @@
+<div class="container">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3"
+  >
+    <a
+      href="/"
+      class="d-flex lg-icon align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+    >
+      <img
+        src="https://homes.rently.com/static/media/logo.c59857935c07fd671273.png"
+        alt="logo"
+        width="95"
+        height="40"
+    /></a>
+
+    <ul
+      class="nav ul-src col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+      style="margin-right: 70px"
+    >
+      <li class="">
+        <input
+          [(ngModel)]="searchCity"
+          type="search"
+          class="search form-control text-dark"
+          placeholder="Search by city..."
+          aria-label="Search"
+        />
+      </li>
+      <li>
+        <div>
+          <button class="btn-src" (click)="onCityFilter()">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1.5em"
+              width="1.5em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav txt text-end" style="margin-right: -150px; padding-top: 4px">
+      <li class="nav-item">
+        <a routerLink="/newproperty" class="nav-link link-dark px-0 hed"
+          >Rent your property</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/favorites" class="nav-link link-dark px-4">
+          <mat-icon>favorite_border</mat-icon>
+        </a>
+      </li>
+    </ul>
+    <div class="">
+      <div class="dropdown dd-icon text-end">
+        <a
+          href="#"
+          class="d-block link-dark text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/219/219986.png"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
+        </a>
+        <ul class="dropdown-menu">
+          <li *ngIf="userIsAuthenticated">
+            <a class="dropdown-item" routerLink="/newproperty"
+              >New property...</a
+            >
+          </li>
+          <li *ngIf="!userIsAuthenticated">
+            <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+          </li>
+          <li *ngIf="!userIsAuthenticated">
+            <a class="dropdown-item" routerLink="/login">Login</a>
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/userprofile">Profile</a>
+          </li>
+          <li *ngIf="userIsAuthenticated"><hr class="dropdown-divider" /></li>
+          <li *ngIf="userIsAuthenticated">
+            <a type="button" class="dropdown-item" (click)="onLogout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+<div style="background-color: rgba(74, 188, 150, 255)">
+  <div class="container">
+    <div class="d-flex justify-content-between py-2">
+      <div>
+        <ul class="nav nav-pills" style="margin-bottom: -17px">
+          <li class="nav-item"></li>
+          <li class="nav-item">
+            <mat-form-field class="dropdownC" appearance="outline">
+              <mat-label>Property type</mat-label>
+              <mat-select [formControl]="propType" multiple>
+                <mat-option
+                  *ngFor="let type of propertyTypeList"
+                  [value]="type"
+                  (click)="onPropertyType()"
+                  >{{ type }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li class="nav-item" style="padding-left: 20px">
+            <mat-form-field class="dropdownC" appearance="outline">
+              <mat-label>Feautures</mat-label>
+              <mat-select [formControl]="feauture" multiple>
+                <mat-option
+                  *ngFor="let feauture of feautureList"
+                  [value]="feauture"
+                  (click)="onFeauture()"
+                  >{{ feauture }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li class="nav-item" style="padding-left: 20px">
+            <mat-form-field class="dropdownC" appearance="outline">
+              <mat-label>Rooms & beds</mat-label>
+              <mat-select
+                [(ngModel)]="wifi"
+                [formControl]="feauture"
+                multiple
+                click=""
+              >
+                <mat-option [value]="feauture"> WiFi</mat-option>
+
+                <mat-option [value]="feauture"> Pets Alloweez</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="nav nav-pills">
+          <li class="nav-item" style="padding-top: 3px">
+            <button mat-stroked-button color="dark" (click)="onClearFilters()">
+              Clear filters <mat-icon>delete_sweep</mat-icon>
+            </button>
+          </li>
+          <li class="nav-item" style="padding-top: 3px">
+            <div class="text-end" style="padding-right: -15px">
+              <select
+                class="select"
+                type="button"
+                [(ngModel)]="Sort"
+                (click)="onSort()"
+              >
+                <option value="" disabled selected>Sort by ↓</option>
+                <option value="price|asc" style="color: black">
+                  Price lower to high
+                </option>
+                <option value="price|desc" style="color: black">
+                  Price higher to lower
+                </option>
+                <option value="ratings|asc" style="color: black">
+                  Rating lower to high
+                </option>
+                <option value="ratings|desc" style="color: black">
+                  Rating higher to lower
+                </option>
+                <mat-icon> import_export</mat-icon>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div class="container pt-3">
+  <div class="bwm-list-page">
+    <div class="row">
+      <div
+        *ngFor="
+          let property of properties
+            | filter: city:'city'
+            | sort: [sortByParam, sortDirection]
+            | filters: propertyType:'propertyType'
+            | filterFeauture: parking:'parking'
+            | petPipe: pets:'pets'
+            | wifiPipe: wifi:'wifi'
+            | terracePipe: terrace:'terrace'
+            | poolPipe: pool:'pool'
+        "
+        class="col-md-3 col-xs-12"
+      >
+        <app-property-card [property]="property"></app-property-card>
+      </div>
+    </div>
+  </div>
+  <mat-paginator
+    length="{{ totalPosts }}"
+    [pageSize]="postsPerPage"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)"
+    *ngIf="properties.length > 0"
+  ></mat-paginator>
+</div>

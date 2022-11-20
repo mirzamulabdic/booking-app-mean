@@ -1,0 +1,68 @@
+@import "/src/app/styles/bwm-colors.scss";
+
+a {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  text-decoration: none;
+}
+
+.bwm-card {
+  border: none;
+  padding-top: 13px;
+  .card-block {
+    padding-top: 8px;
+
+    .card-subtitle {
+      margin: 0;
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #16861a;
+    }
+
+    .card-title {
+      font-size: 19px;
+      margin: 3px 0;
+      color: $dark-gray-color;
+    }
+
+    .card-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: #7e7e7e;
+      margin-bottom: 0;
+    }
+  }
+}
+.card-img-top {
+  border-radius: 15px;
+  width: 300px;
+  height: 200px;
+}
+@media (min-width: 1800px) {
+  .card-img-top {
+    border-radius: 15px;
+    width: 300px;
+    height: 200px;
+  }
+}
+.fa-icon {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+}
+.link-dark {
+  z-index: 1000;
+}
+@media only screen and (max-width: 500px) {
+  .bwm-card {
+    left: 35px;
+  }
+  .fa-icon {
+    position: absolute;
+    top: 20px;
+    right: 75px;
+  }
+}

@@ -1,0 +1,406 @@
+<div class="pp" style="background-color: rgba(74, 188, 150, 255)"></div>
+<div class="container" style="padding-top: 50px">
+  <h1 class="title">Add new property for rent</h1>
+  <hr />
+</div>
+<div class="container pt-5">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="basicInfoForm" label="Basic info">
+      <div class="steps">
+        <div class="col-md-7 col-lg-8 align-items-center">
+          <form [formGroup]="basicInfoForm" class="needs-validation">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="type" class="form-label">Property type</label>
+                <select
+                  formControlName="propertyType"
+                  class="form-select"
+                  id="type"
+                >
+                  <option *ngFor="let type of types">{{ type }}</option>
+                </select>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="rooms" class="form-label">Number of rooms</label>
+                <select formControlName="rooms" class="form-select" id="rooms">
+                  <option [defaultSelected]="[1]">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label for="rooms" class="form-label">Number of beds</label>
+                <select formControlName="beds" class="form-select" id="beds">
+                  <option [defaultSelected]="[1]">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="checkboxs">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    formControlName="wifi"
+                    id="inlineCheckbox1"
+                    value="option1"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="inlineCheckbox1"
+                    style="margin-left: -10px"
+                    >WiFi</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    formControlName="parking"
+                    id="inlineCheckbox2"
+                    value="option2"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="inlineCheckbox2"
+                    style="margin-left: -10px"
+                    >Parking</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    formControlName="pets"
+                    id="inlineCheckbox3"
+                    value="option3"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="inlineCheckbox3"
+                    style="margin-left: -10px"
+                    >Pets allowed</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    formControlName="terrace"
+                    id="inlineCheckbox1"
+                    value="option1"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="inlineCheckbox1"
+                    style="margin-left: -10px"
+                    >Terrace</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    formControlName="pool"
+                    id="inlineCheckbox2"
+                    value="option2"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="inlineCheckbox2"
+                    style="margin-left: -10px"
+                    >Pool</label
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="btns">
+            <button
+              class="btn btn-primary"
+              style="width: 200px"
+              type="button"
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="addressForm" label="Address info">
+      <div class="steps">
+        <div class="col-md-7 col-lg-8">
+          <form [formGroup]="addressForm" class="needs-validation">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="address"
+                  id="address"
+                />
+                <mat-error
+                  *ngIf="
+                    !addressForm.get('address')?.valid &&
+                    addressForm.get('address')?.touched
+                  "
+                >
+                  Valid address is required.
+                </mat-error>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" formControlName="state" id="state">
+                  <option *ngFor="let state of states">{{ state }}</option>
+                </select>
+                <mat-error
+                  *ngIf="
+                    !addressForm.get('state')?.valid &&
+                    addressForm.get('state')?.touched
+                  "
+                >
+                  You need to choose state!
+                </mat-error>
+              </div>
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Zip code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="zip"
+                  id="zip"
+                />
+                <mat-error
+                  *ngIf="
+                    !addressForm.get('zip')?.valid &&
+                    addressForm.get('zip')?.touched
+                  "
+                >
+                  Valid zip code is required. (Only numbers)
+                </mat-error>
+              </div>
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="city"
+                  id="lastName"
+                />
+                <mat-error
+                  *ngIf="
+                    !addressForm.get('city')?.valid &&
+                    addressForm.get('city')?.touched
+                  "
+                >
+                  Valid city name is required.
+                </mat-error>
+              </div>
+            </div>
+          </form>
+          <div class="btns">
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="width: 200px"
+              matStepperPrevious
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="width: 200px; margin-left: 10px"
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="formMediaGroup" label="Images">
+      <form [formGroup]="formMediaGroup">
+        <div class="row mt-3">
+          <label for="images" class="btn btn-outline-primary"
+            >upload Images
+            <mat-icon class="text-primary upload-icon"
+              >cloud_upload</mat-icon
+            ></label
+          >
+          <input
+            formControlName="images"
+            id="images"
+            type="file"
+            accept="image/*"
+            multiple
+            style="visibility: hidden"
+            (change)="onSelectFile($event)"
+          />
+        </div>
+        <div class="d-flex flex-wrap py-4 container">
+          <div
+            *ngFor="let url of urls; index as i"
+            class="col-lg-3 col-sm-4 col-6 p-2"
+          >
+            <img
+              [src]="url"
+              alt="Image not found"
+              height="150px"
+              width="220px"
+            />
+            <button
+              mat-mini-fab
+              class="text-danget del-btn"
+              (click)="deleteImg(i)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="btns" style="padding-top: 20px">
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="width: 200px"
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="width: 200px; margin-left: 10px"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="detailsForm" label="Complete">
+      <div class="steps">
+        <div class="col-md-7 col-lg-8 align-items-center">
+          <form [formGroup]="detailsForm" class="needs-validation">
+            <div formGroupName="dateDaysGr">
+              <div class="form-group">
+                <h4>Enter available days for rent</h4>
+                <mat-form-field
+                  class="col-sm-6"
+                  color="accent"
+                  appearance="outline"
+                >
+                  <mat-label>Starting Date</mat-label>
+                  <input
+                    matInput
+                    formControlName="startDate"
+                    name="startDate"
+                    [matDatepicker]="startDatePicker"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="startDatePicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #startDatePicker></mat-datepicker>
+                  <mat-error
+                    *ngIf="
+                      !detailsForm.get('dateDaysGr.startDate')?.valid &&
+                      detailsForm.get('dateDaysGr.startDate')?.touched
+                    "
+                  >
+                    Please enter start date for your vacation
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field
+                  class="col-sm-6"
+                  style="padding-left: 10px"
+                  color="accent"
+                  appearance="outline"
+                >
+                  <mat-label>Ending Date</mat-label>
+                  <input
+                    formControlName="endDate"
+                    name="endDate"
+                    matInput
+                    [matDatepicker]="endDatePicker"
+                  />
+
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="endDatePicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #endDatePicker></mat-datepicker>
+                  <mat-error
+                    *ngIf="
+                      !detailsForm.get('dateDaysGr.endDate')?.valid &&
+                      detailsForm.get('dateDaysGr.endDate')?.touched
+                    "
+                  >
+                    Please enter end date for your vacation
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label"
+                >Price for one night</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="price"
+                id="firstName"
+              />
+              <div class="invalid-feedback">Valid first name is required.</div>
+            </div>
+            <div class="btns">
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="width: 200px"
+                matStepperPrevious
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="width: 200px; margin-left: 10px"
+                [disabled]="
+                  !detailsForm.valid ||
+                  !addressForm.valid ||
+                  !formMediaGroup.valid
+                "
+                (click)="onSubmit()"
+              >
+                Add property
+              </button>
+              <div
+                style="padding-top: 10px"
+                *ngIf="
+                  !detailsForm.valid ||
+                  !addressForm.valid ||
+                  !formMediaGroup.valid
+                "
+              >
+                <p class="fw-bolder" style="color: rgb(170, 62, 62)">
+                  Please enter all fields!
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,293 @@
+<div class="pp" style="background-color: rgba(74, 188, 150, 255)"></div>
+
+<mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
+
+<div class="container" style="padding-top: 20px">
+  <div class="parrent-h">
+    <div class="head1" *ngIf="rating > 0">
+      <h2 class="fw-bolder text-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-star-fill"
+          viewBox="0 1 16 16"
+        >
+          <path
+            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+          />
+        </svg>
+        {{ rating }}
+      </h2>
+    </div>
+    <div class="head1" *ngIf="property.ratings.length === 0">
+      <h2 class="fw-bolder text-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-star-fill"
+          viewBox="0 1 16 16"
+        >
+          <path
+            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+          />
+        </svg>
+        New
+      </h2>
+    </div>
+    <div class="head2">
+      <h1 class="display-2 fw-bolder text-center">
+        {{ property.propertyType }} · {{ property.city }}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-geo-alt-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+          />
+        </svg>
+      </h1>
+    </div>
+    <div class="head3" *ngIf="userIsAuthenticated">
+      <a type="button" (click)="onFavorite()">
+        <mat-icon class="fa-icon">favorite_border</mat-icon></a
+      >
+    </div>
+    <div class="head3" *ngIf="!userIsAuthenticated">
+      <a type="button" (click)="onRedirect()">
+        <mat-icon class="fa-icon">favorite_border</mat-icon></a
+      >
+    </div>
+  </div>
+  <swiper
+    [navigation]="true"
+    [pagination]="true"
+    [keyboard]="true"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide
+      ><img src="{{ property.imagePaths[0] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[1]"
+      ><img src="{{ property.imagePaths[1] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[2]"
+      ><img src="{{ property.imagePaths[2] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[3]"
+      ><img src="{{ property.imagePaths[3] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[4]"
+      ><img src="{{ property.imagePaths[4] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[5]"
+      ><img src="{{ property.imagePaths[5] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[6]"
+      ><img src="{{ property.imagePaths[6] }}"
+    /></ng-template>
+    <ng-template swiperSlide *ngIf="property.imagePaths[7]"
+      ><img src="{{ property.imagePaths[7] }}"
+    /></ng-template>
+  </swiper>
+
+  <div class="parrent">
+    <div class="ch1">
+      <div class="mb-1">
+        <h4 class="display-2" style="color: rgb(126, 125, 125)">
+          Host by: {{ property.owner }}
+        </h4>
+      </div>
+      <h1 class="display-5 fw-bolder">{{ property.propertyType }}</h1>
+      <div class="fs-5 mb-5">
+        <p>$ {{ property.price }} per night</p>
+        <p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+            />
+          </svg>
+          {{ property.address }}, {{ property.zip }} {{ property.city }} BiH
+        </p>
+      </div>
+    </div>
+    <div class="ch2">
+      <p class="lead" style="color: rgb(126, 125, 125)">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged.
+      </p>
+    </div>
+  </div>
+
+  <div class="parrent1">
+    <div class="ch3">
+      <h1 class="display-2">Features</h1>
+      <div class="fs-5 mb-5">
+        <p class="fw-bolder">Free cancelation</p>
+        <p class="fw-bolder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-house-heart"
+            viewBox="0 1 16 16"
+          >
+            <path
+              d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"
+            />
+            <path
+              d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"
+            />
+          </svg>
+          {{ getStringR(property.rooms) }} · {{ getStringB(property.beds) }}
+        </p>
+        <p class="fw-bolder" *ngIf="property.wifi">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-wifi"
+            viewBox="0 2 16 16"
+          >
+            <path
+              d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"
+            />
+            <path
+              d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"
+            />
+          </svg>
+          WiFi
+        </p>
+        <p class="fw-bolder" *ngIf="property.parking">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="currentColor"
+            class="bi bi-p-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM5.5 4.002h2.962C10.045 4.002 11 5.104 11 6.586c0 1.494-.967 2.578-2.55 2.578H6.784V12H5.5V4.002Zm2.77 4.072c.893 0 1.419-.545 1.419-1.488s-.526-1.482-1.42-1.482H6.778v2.97H8.27Z"
+            />
+          </svg>
+          Parking
+        </p>
+        <p class="fw-bolder" *ngIf="property.pets">
+          <mat-icon style="padding-top: 3px">pets</mat-icon> Pets allowed
+        </p>
+        <p class="fw-bolder" *ngIf="property.pool">
+          <mat-icon style="padding-top: 3px">pool</mat-icon>
+          Pool
+        </p>
+        <p class="fw-bolder" *ngIf="property.terrace">
+          <mat-icon style="padding-top: 3px">check</mat-icon>
+          Terrace
+        </p>
+      </div>
+    </div>
+    <div class="ch4">
+      <form [formGroup]="datesForm">
+        <mat-form-field
+          class="col-sm-6"
+          style="padding-right: 10px"
+          color="accent"
+          appearance="outline"
+        >
+          <mat-label>Check-in</mat-label>
+          <input
+            matInput
+            formControlName="startingDate"
+            name="startDate"
+            [matDatepicker]="startDatePicker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+          class="col-sm-6"
+          style="padding-right: 10px"
+          color="accent"
+          appearance="outline"
+        >
+          <mat-label>Check-out</mat-label>
+          <input
+            name="endDate"
+            formControlName="endingDate"
+            matInput
+            [matDatepicker]="endDatePicker"
+          />
+
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-error
+          *ngIf="!datesForm.valid && datesForm.get('startingDate')?.touched"
+        >
+          Valid dates required
+        </mat-error>
+        <div>
+          <button
+            class="w-100 btn btn-lg btn-primary"
+            [disabled]="
+              !userIsAuthenticated ||
+              !datesForm.valid ||
+              property.ownerId === userBookingId
+            "
+            id="btn"
+            type="submit"
+            (click)="onBook()"
+          >
+            Book now
+          </button>
+
+          <div
+            class="text-end"
+            style="padding-top: 10px"
+            *ngIf="!userIsAuthenticated"
+          >
+            <p class="fw-bolder" style="color: rgb(170, 62, 62)">
+              You must be signed in to book or rate!
+            </p>
+          </div>
+
+          <div
+            class="text-end"
+            style="padding-top: 10px"
+            *ngIf="property.ownerId === userBookingId"
+          >
+            <p class="fw-bolder" style="color: rgb(170, 62, 62)">
+              You can't book your own property!
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

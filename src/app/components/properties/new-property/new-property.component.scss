@@ -1,0 +1,81 @@
+.steps {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: rgba(74, 188, 150, 255);
+}
+.checkboxs {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.del-btn {
+  position: relative;
+  top: +65px;
+  left: -20px;
+  z-index: 5;
+}
+.img-pre {
+  z-index: 1;
+  margin-right: 10px !important;
+}
+.dp-hidden {
+  width: 0;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+.custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
+.btn-primary {
+  border: 0;
+  height: 40px;
+  width: 70px;
+  background-color: rgba(74, 188, 150, 255);
+}
+img {
+  border-radius: 15px;
+}
+
+.pp {
+  top: 0;
+  margin-top: 0;
+  height: 40px;
+}
+::ng-deep .select-start {
+  border-radius: 28px 0 0 28px !important;
+  min-width: 28px !important;
+}
+::ng-deep .select-end {
+  border-radius: 0 28px 28px 0 !important;
+}
+select {
+  border-radius: 28px !important;
+}
+input {
+  border-radius: 28px !important;
+}
+.btns {
+  text-align: center;
+  padding-top: 40px;
+}
+label {
+  padding-left: 10px;
+}

@@ -1,0 +1,66 @@
+<nav class="py-3 bg-white">
+  <div class="container d-flex flex-wrap">
+    <ul class="nav me-auto">
+      <li class="nav-item">
+        <a
+          routerLink="/"
+          class="nav-link link-dark px-2 active"
+          aria-current="page"
+          class="logo"
+          ><img
+            src="https://homes.rently.com/static/media/logo.c59857935c07fd671273.png"
+            alt="logo"
+            width="95"
+            height="40"
+        /></a>
+      </li>
+    </ul>
+    <ul class="nav">
+      <li class="nav-item new-prop">
+        <a routerLink="/newproperty" class="nav-link link-dark px-0 hed"
+          >Rent your property</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/favorites" class="nav-link link-dark px-4">
+          <mat-icon>favorite_border</mat-icon>
+        </a>
+      </li>
+    </ul>
+    <div class="dropdown text-end">
+      <a
+        href="#"
+        class="d-block link-dark text-decoration-none dropdown-toggle"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/219/219986.png"
+          alt="mdo"
+          width="32"
+          height="32"
+          class="rounded-circle"
+        />
+      </a>
+      <ul class="dropdown-menu dd-icon">
+        <li *ngIf="userIsAuthenticated">
+          <a class="dropdown-item" routerLink="/newproperty">New property...</a>
+        </li>
+        <li *ngIf="!userIsAuthenticated">
+          <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+        </li>
+        <li *ngIf="!userIsAuthenticated">
+          <a class="dropdown-item" routerLink="/login">Login</a>
+        </li>
+        <li>
+          <a class="dropdown-item" routerLink="/userprofile">Profile</a>
+        </li>
+        <li *ngIf="userIsAuthenticated"><hr class="dropdown-divider" /></li>
+        <li *ngIf="userIsAuthenticated">
+          <a type="button" class="dropdown-item" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

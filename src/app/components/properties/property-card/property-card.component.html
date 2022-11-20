@@ -1,0 +1,30 @@
+<a routerLink="/properties/{{ property.id }}" target="_blank">
+  <div class="card bwm-card">
+    <img class="card-img-top" [src]="property.imagePaths[0]" alt="" />
+    <a
+      class="link-dark"
+      [routerLink]="null"
+      disabled="true"
+      *ngIf="userIsAuthenticated"
+      (click)="onFavorite(property.id!)"
+      ><mat-icon class="fa-icon">favorite_border</mat-icon></a
+    >
+    <a
+      routerLink="/favorites"
+      (click)="onRedirect()"
+      class="link-dark"
+      *ngIf="!userIsAuthenticated"
+      ><mat-icon class="fa-icon">favorite_border</mat-icon></a
+    >
+    <div class="card-block">
+      <h6 class="card-subtitle type-{{ property.city }}">
+        {{ property.propertyType }} &#183;
+        {{ property.city }}
+      </h6>
+      <h4 class="card-title">{{ property.propertyType }}</h4>
+      <p class="card-text">
+        ${{ property.price }} per Night &#183; Free Cancelation
+      </p>
+    </div>
+  </div>
+</a>
