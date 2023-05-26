@@ -12,7 +12,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://mirzamulabdic:yelK4o74Ec8jlaDC@estatescluster.ckpfghp.mongodb.net/?retryWrites=true&w=majority"
+    "DATABASE-URL-LINK-HERE"
   )
   .then(() => {
     console.log("Connected to database!");
